@@ -86,27 +86,80 @@ Replace `YOUR-USERNAME` with your actual GitHub username.
 > your copy at the fork:
 > `git remote set-url origin https://github.com/YOUR-USERNAME/meta-prompt-toolkit.git`
 
-### 2. Put it where Claude Code looks for skills
+### 2. Install it (one command)
 
-Skills live in a `skills` folder. Copy the toolkit into your Claude skills directory.
+The toolkit comes with an installer that puts everything in the right place for you. It works the
+same on Windows, macOS, and Linux.
+
+Open a terminal, go into the toolkit folder, and run:
+
+```
+cd meta-prompt-toolkit
+python install.py
+```
+
+On macOS and Linux, if `python` isn't recognised, use `python3 install.py` instead.
+
+It will tell you exactly what it copied, where it went, and what to do next. It's safe to run
+twice — running it again just replaces the old copy with the current one.
+
+To remove it later: `python install.py --uninstall`
+To see where it *would* go without changing anything: `python install.py --where`
+
+<details>
+<summary><b>Don't have Python? Here's how to get it (click to expand)</b></summary>
+
+Python is free and takes a few minutes to install. You only need it for this installer — the
+toolkit itself doesn't use it.
+
+**Windows**
+1. Open the Microsoft Store, search for **Python 3.13**, and click **Get**. (This is the easiest
+   route — it sets everything up for you.)
+2. Alternatively, go to [python.org/downloads](https://www.python.org/downloads/), download the
+   Windows installer, and run it. **Important:** on the first screen, tick the box that says
+   **"Add python.exe to PATH"** before clicking Install. Without that tick, the `python` command
+   won't be found.
+3. Close and reopen your terminal, then check it worked: `python --version`
+
+**macOS**
+1. Go to [python.org/downloads](https://www.python.org/downloads/) and download the macOS
+   installer, then run it and accept the defaults.
+2. Close and reopen Terminal, then check: `python3 --version`
+
+**Linux (Ubuntu, Kubuntu, Debian, Mint)**
+
+Python is usually installed already. Check first:
+```
+python3 --version
+```
+If that prints a version number, you're done. If not:
+```
+sudo apt update && sudo apt install python3
+```
+
+</details>
+
+<details>
+<summary><b>Prefer to do it by hand, without the installer? (click to expand)</b></summary>
+
+The installer only copies a folder — you can do the same thing yourself.
 
 **macOS / Linux:**
-
 ```
 mkdir -p ~/.claude/skills
 cp -r meta-prompt-toolkit ~/.claude/skills/meta-prompt
 ```
 
 **Windows (PowerShell):**
-
 ```
 New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills"
 Copy-Item -Recurse meta-prompt-toolkit "$env:USERPROFILE\.claude\skills\meta-prompt"
 ```
 
 The **folder name is what matters** — the skill is named after the directory (`meta-prompt`), not
-after anything inside the files. Make sure it ends up at
-`.claude/skills/meta-prompt/SKILL.md`.
+after anything inside the files. Make sure it ends up at `.claude/skills/meta-prompt/SKILL.md`.
+
+</details>
 
 ### 3. Check it's recognized
 
@@ -132,18 +185,19 @@ need to mention the skill by name.
 
 ## Updating the toolkit later
 
-If you improve the toolkit, pull the latest version and re-copy it:
+If you downloaded a ZIP, download the new one and run the installer again.
+
+If you used `git`, pull the latest version and re-run the installer:
 
 ```
 cd meta-prompt-toolkit
 git pull
-rm -rf ~/.claude/skills/meta-prompt
-cp -r . ~/.claude/skills/meta-prompt
-rm -rf ~/.claude/skills/meta-prompt/.git
+python install.py
 ```
 
-(The `rm -rf` of the old copy prevents stale files lingering after a rename; removing `.git`
-afterwards keeps repository internals out of your skills folder.)
+The installer removes the old copy before writing the new one, so nothing stale is left behind.
+Your own edits to the *installed* copy are overwritten — if you've customised anything, make those
+changes in your fork and re-run this, so your changes survive every update.
 
 ---
 
