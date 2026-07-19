@@ -53,14 +53,38 @@ This requires **Claude Code** (Anthropic's command-line/desktop tool).
 
 ### 1. Get the toolkit onto your computer
 
-If you have `git` installed, open a terminal and run (replace the URL with your repo's URL):
+**First, decide which of these you are.** It changes what you should do, and picking wrong is
+mildly annoying to undo later.
+
+**(a) You just want to USE the toolkit as-is.** Most people. Download it and you're done:
+
+Click the green **Code** button at the top of the GitHub page, choose **Download ZIP**, and unzip
+it. You'll get a folder called `meta-prompt-toolkit`. That's everything. Skip to step 2.
+
+(If you have `git` and prefer the terminal, `git clone https://github.com/hmbseaotter/meta-prompt-toolkit.git`
+does the same thing.)
+
+**(b) You want to CHANGE it and keep your changes.** Edit the prompts, add your own branch file,
+tune it to how you work. Then **fork it first** — a fork is your own copy of the repo, under your
+own GitHub account, that you can freely save changes to.
+
+To fork: on the GitHub page, click **Fork** (top right) → **Create fork**. GitHub makes a copy at
+`github.com/YOUR-USERNAME/meta-prompt-toolkit`. Then download or clone **your fork**, not this one:
 
 ```
 git clone https://github.com/YOUR-USERNAME/meta-prompt-toolkit.git
 ```
 
-You should see a new folder called `meta-prompt-toolkit`. If you don't have `git`, you can instead
-click the green **Code** button on the GitHub page, choose **Download ZIP**, and unzip it.
+Replace `YOUR-USERNAME` with your actual GitHub username.
+
+> **Why fork instead of just cloning?** If you clone this repo directly and later try to `git push`
+> your changes, it will fail with a permission error — you don't have write access to someone
+> else's repository, and GitHub won't let you write to mine. Nothing breaks and nothing of mine is
+> touched, but your work has nowhere to go. Forking first gives your changes a home from the start.
+>
+> Already cloned directly and made changes? Nothing is lost. Fork the repo on GitHub, then point
+> your copy at the fork:
+> `git remote set-url origin https://github.com/YOUR-USERNAME/meta-prompt-toolkit.git`
 
 ### 2. Put it where Claude Code looks for skills
 
@@ -132,12 +156,29 @@ documentation. You can read every file before you run anything.
 
 ## Credits & basis
 
-Built on current published prompt-engineering guidance: Anthropic's official Claude prompting
-documentation for the core and main branch, Google's Gemini 3 developer guidance for the Gemini
-branch, and OpenAI's current model and prompting guides for the ChatGPT branch. Every branch was
-verified against live vendor sources at build time (July 2026), and each branch file names the
-pages it was built from plus anything left unverified.
+### How current is this?
 
-AI guidance evolves fast — and the vendors have recently moved in *different* directions on
-sampling parameters, personas, and chain-of-thought. Re-check the branch files periodically
-rather than assuming advice from one vendor transfers to another.
+**Everything here was checked against the vendors' own live documentation in July 2026.**
+
+That date matters, because AI guidance changes fast — parts of this were *already* out of date
+within months of the underlying models shipping. Some concrete examples of what changed: Anthropic
+replaced the `budget_tokens` setting with `effort`; Google stopped recommending the `temperature`
+setting on Gemini 3 entirely; OpenAI reversed its own advice on how much detail to put in a prompt.
+
+**To see how stale this might be:** each branch file (`branches/anthropic.md`, `branches/gemini.md`,
+`branches/chatgpt.md`) states, at the top, which vendor pages it was built from and when — plus
+anything the author couldn't verify. Start there.
+
+**To see when this repo was last touched at all:** on the GitHub page, the file list shows the date
+of the most recent change to each file, and clicking **Commits** (or the clock icon) shows the full
+history with dates. If that was a long time ago, treat the vendor-specific settings tables with
+suspicion and check the vendor's own docs.
+
+Sources: Anthropic's official Claude prompting documentation for the core and the Claude branch;
+Google's Gemini 3 developer guidance for the Gemini branch; OpenAI's current model and prompting
+guides for the ChatGPT branch.
+
+One warning worth repeating: the vendors have recently moved in *different* directions on sampling
+parameters, personas, and chain-of-thought. Advice that is correct for one model can actively hurt
+another. Don't assume it transfers — that's exactly why this toolkit keeps them in separate branch
+files.
