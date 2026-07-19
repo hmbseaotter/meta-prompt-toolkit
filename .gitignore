@@ -1,0 +1,20 @@
+# Private planning docs — never publish
+HANDOVER.md
+**/HANDOVER.md
+
+# Scratch / working notes
+*.local.md
+scratch/
+notes-private/
+
+# Archives (the repo is the source of truth, not a zip of it)
+*.zip
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*~
