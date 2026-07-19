@@ -174,9 +174,33 @@ You should see **meta-prompt** in the list. If you do, it worked.
 
 ### 4. Use it
 
-Just ask naturally, for example:
+There are two ways, and it's worth knowing both.
+
+**Way 1 — just ask naturally.** Describe what you want and Claude picks up the skill on its own.
+You never have to name it:
 
 > Write me a prompt for summarizing customer feedback into themes.
+
+**Way 2 — call it by name.** Type a slash followed by the skill name:
+
+```
+/meta-prompt
+```
+
+You can put your request on the same line:
+
+```
+/meta-prompt a prompt that reviews a contract and lists the key terms
+```
+
+**When to use which.** Way 1 is normal use — it's how skills are meant to work. Reach for Way 2
+when Claude *doesn't* pick it up on its own and you expected it to. That happens: Claude only
+consults skills for tasks it can't already handle trivially, so a very short or very simple
+request may not trigger it. Typing `/meta-prompt` forces the issue.
+
+If you find yourself needing Way 2 often for requests that clearly *are* prompt-writing, that's
+worth knowing about — it usually means the skill's `description` (in `SKILL.md`) doesn't match how
+you naturally phrase things.
 
 Claude will recognize this as a prompt-writing request and use the skill automatically. You don't
 need to mention the skill by name.
