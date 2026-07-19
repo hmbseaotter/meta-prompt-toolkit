@@ -125,9 +125,8 @@ afterwards keeps repository internals out of your skills folder.)
 
 ## A note on privacy
 
-This is a public repository. A private planning document for this project (`HANDOVER.md`) is
-deliberately **kept out** of the repo, and `.gitignore` is set to block it from ever being
-uploaded, even by accident. Nothing here contains personal or private information.
+Nothing in this repository contains personal or private information — it's all prompt text and
+documentation. You can read every file before you run anything.
 
 ---
 
