@@ -202,9 +202,6 @@ If you find yourself needing Way 2 often for requests that clearly *are* prompt-
 worth knowing about — it usually means the skill's `description` (in `SKILL.md`) doesn't match how
 you naturally phrase things.
 
-Claude will recognize this as a prompt-writing request and use the skill automatically. You don't
-need to mention the skill by name.
-
 ---
 
 ## Updating the toolkit later
